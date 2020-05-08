@@ -4,30 +4,30 @@ index dff07a0..5e58a7c 100644
 +++ b/b_file.txt
 @@ -1,41 +1,27 @@
  This _
--“_writing _through_”_ _of _Vilém _Flusser_’_s __‘_The _Future _of _Writing_,__’_ _reconfiguring _it _so _as _to _become _John _Cayley_’_s __‘_The _Future _of _Language_,__’_ 
-+essay 
+-“_writing _through_”_ _of _Vilém _Flusser_’_s __‘_The _Future _of _Writing_,__’_ _reconfiguring _it _so _as _to _become _John _Cayley_’_s __‘_The _Future _of _Language_,__’_
++essay
  _will _not _consider _
-+the 
++the
  _problems _concerning 
--any _possible _future _for 
+-any _possible _future _for
  _the _
--teaching _or _philosophizing 
-+future 
+-teaching _or _philosophizing
++future
  _of _
--an 
-+teaching _the 
+-an
++teaching _the
  _art _of _
--language 
-+writing 
+-language
++writing
  _in _the _face _of _the _growing _importance _of _non_
---_ _or _anti_-_linguistic 
-+literate 
+--_ _or _anti_-_linguistic
++literate
  _messages _in _our _surroundings_,_ _although _those _problems _
--have _already 
-+will 
+-have _already
++will
  _become _
--significant 
-+ever _more _important _both 
+-significant
++ever _more _important _both
  _in _the _so_-_called _developed _
 -countries
 +countries _and _in _societies _where _illiteracy _is _still _widespread
@@ -36,28 +36,28 @@ index dff07a0..5e58a7c 100644
  <ub>
 ~
  Instead_,_ _it _proposes _to _consider _a _tendency _that _underlies _those _
--problems: 
-+problems_:_ 
+-problems:
++problems_:_
  _namely_,_ _the _tendency _
--to _deny _or _distrust _the _fundamental _linearity _of _language _(as _perceptible _phenomenon) 
-+away _from _linear _codes _such _as _writing 
+-to _deny _or _distrust _the _fundamental _linearity _of _language _(as _perceptible _phenomenon)
++away _from _linear _codes _such _as _writing
  _and _toward _
 -multi
 +two
- _-_dimensional _codes _such _as _photographs_,_ _films_,_ 
--TV_,_ _screen_-_based _graphic _design _in _the _service _of _social 
+ _-_dimensional _codes _such _as _photographs_,_ _films_,_
+-TV_,_ _screen_-_based _graphic _design _in _the _service _of _social
  _and _
 -socialized _media_,_ _and_,_ _generally
 +TV
  _,_ _a _
--conception _of _art _and _aesthetics 
-+tendency 
- _that 
+-conception _of _art _and _aesthetics
++tendency
+ _that
 -is _dominated _by _visuality_,_ _by _so_-_called __“_fine_”_ _as __“_visual_”_ _or __“_plastic_”_ _art _even _as _and _when _this _world _of _art _embraces _the _conceptualism _or __“_post_-_medium _condition_”_ _which _could_,_ _in _principle _if _not _in _practice_,_ _be _extended _to _the _arts _of _language_._
 ~
--This _distrust _and _denial 
- _may _be _observed 
--everywhere 
+-This _distrust _and _denial
+ _may _be _observed
+- everywhere
  _if _one _glances _even _superficially _at _the _codified _world _that _surrounds _us_.
 -Literature _is _$50bn _behind _art_._
 ~
@@ -67,17 +67,17 @@ index dff07a0..5e58a7c 100644
  </ub>
 ~
  The _
--“_future_”_ 
-+future 
+-“_future_”_
++future
  _of _
 -language_,_ _or _rather
 +writing
  _,_ _of _
--those _gestures 
-+that _gesture 
+-those _gestures
++that _gesture
  _which _
--align 
-+aligns 
+-align
++aligns
  _symbols _to _produce _
 -our _shared_,_ _collective_,_ _readable _utterances
 +texts
@@ -88,7 +88,7 @@ index dff07a0..5e58a7c 100644
 ~
  <sb/>
 ~
- 
+
 ~
  <ub>
 ~
@@ -104,34 +104,34 @@ index dff07a0..5e58a7c 100644
 ~
  <ub>
 ~
--The _configuration _of _practices _that _we _conventionally _call _writing 
-+Writing 
- _is _an _important 
--subsidiary _configuration _of _linguistic 
+-The _configuration _of _practices _that _we _conventionally _call _writing
++Writing
+ _is _an _important
+-subsidiary _configuration _of _linguistic
  _gesture_,_ _because _it _both _articulates _and _produces _that _state _of _mind _which _is _called __“_historical _consciousness_
 -.
 +,
  __”_
-+ 
++
  _History _began _with _the _
--authoritative _emergence 
-+invention 
+-authoritative _emergence
++invention
  _of _
 -writing _in _visuality
 +writing
- _,_ _not _for _the _banal _reason _often _advanced _that _written _texts _permit _us _to _reconstruct _the _past_,_ _but _for _the _more _pertinent _reason _that _the _world _is _not 
--necessarily 
+ _,_ _not _for _the _banal _reason _often _advanced _that _written _texts _permit _us _to _reconstruct _the _past_,_ _but _for _the _more _pertinent _reason _that _the _world _is _not
+-necessarily
  _perceived _as _a _process_,_ __“_historically_,__”_ _unless _one _signifies _it _by _successive _
 -symbols _that _persist _as _writing_._
 ~
 -_“_Writing_”
 +symbols_,
- _ 
+ _
 -in _this _historically _implicated _sense _is _ambiguous_._
 ~
--The _effects _of _a _certain _persistence _in _collective _memory _– _such _as _those _promoted 
- _by 
--oral _cultures _– _are _every _bit _as __“_historical_”_ _as _the _effects _of _literal _or _letteral 
+-The _effects _of _a _certain _persistence _in _collective _memory _– _such _as _those _promoted
+ _by
+-oral _cultures _– _are _every _bit _as __“_historical_”_ _as _the _effects _of _literal _or _letteral
  _writing_.
 -This _follows_,_ _clearly _and _simply_,_ _from _post-Derridean _thought_._
 ~
@@ -141,11 +141,11 @@ index dff07a0..5e58a7c 100644
 ~
  <ub>
 ~
- The _difference _between 
--so-called 
+ The _difference _between
+-so-called
  _prehistory _and _history _is _not _that _we _have _written _documents _that _permit _us _to _read _the _latter_,_ _but _that _during _history _there _are _literate _
--persons 
-+men 
+-persons
++men
  _who _experience_,_ _understand_,_ _and _evaluate _the _world _as _a __“_becoming
 -.__”_
 ~
@@ -153,8 +153,8 @@ index dff07a0..5e58a7c 100644
  _,__
 +”
  _ _
--historical 
-+whereas _in _prehistory _no _such _existential 
+-historical
++whereas _in _prehistory _no _such _existential
  _attitude _
 -has _a _different _extension _and _scale _with _respect _to _the _sum _of _human _culture
 +is _possible
@@ -162,29 +162,29 @@ index dff07a0..5e58a7c 100644
 ~
  </ub>
 ~
- If _the _art _of _writing 
--(in _either _sense_,_ _post-Derridean _or _conventional) 
+ If _the _art _of _writing
+-(in _either _sense_,_ _post-Derridean _or _conventional)
  _were _to _fall _into _oblivion_,_ _or _if _it _were _to _become _subservient _to _picture _making _(as _in _the __“_scriptwriting_”_ _
--of 
-+in 
+-of
++in
  _films)_,_ _history _in _the _
--conventional _(historically _emergent) 
-+strict 
+-conventional _(historically _emergent)
++strict
  _sense _of _that _term _would _be _over
 -,_ _and _perhaps _it _is
  _._
 ~
  <sb/>
 ~
- 
+
 ~
  If _one _examines _certain _Mesopotamian _tiles_,_ _one _can _see _that _the _
-+original 
- _purpose _of 
--this _early _conventional 
++original
+ _purpose _of
+-this _early _conventional
  _writing _was _to _facilitate _the _
--reading 
-+deciphering 
+-reading
++deciphering
  _of _images_._
 ~
  Those _tiles _contain _images _impressed _upon _them _with _cylindrical _seals _and __“_cuneiform_”_ _symbols _scratched _into _them _with _a _stylus_._
@@ -202,24 +202,24 @@ index dff07a0..5e58a7c 100644
 ~
  </ub>
 ~
- They _do _so _by _unrolling _the _surface _of _the _image _into _lines_,_ _by _unwinding _the _tissue _of _the _image _into _the _threads _of _a _text_,_ 
--the _vocabulary _of _an _utterance_,_ 
+ They _do _so _by _unrolling _the _surface _of _the _image _into _lines_,_ _by _unwinding _the _tissue _of _the _image _into _the _threads _of _a _text_,_
+-the _vocabulary _of _an _utterance_,_
  _by _rendering __“_explicit_”_ _what _was __“_implicit_”_ _within _the _image_._
 ~
  It _may _be _shown _through _text _
--analysis_,_ _through _reading_,_ 
-+analysis 
+-analysis_,_ _through _reading_,_
++analysis
  _that _the _
-+original 
- _purpose _of 
--such 
- _writing_,_ _namely_,_ _the _transcoding _of _two-dimensional _codes _into _a _single _dimension_,_ _is _still _there_:_ 
--Every _text_,_ 
++original
+ _purpose _of
+-such
+ _writing_,_ _namely_,_ _the _transcoding _of _two-dimensional _codes _into _a _single _dimension_,_ _is _still _there_:_
+-Every _text_,_
  _every _
 -utterance
 +text
- _,_ _even _a _very _abstract _one_,_ 
--also 
+ _,_ _even _a _very _abstract _one_,_
+-also
  _means_,_ _in _the _last _analysis_,_ _an _image_.
 -<sb/>
  _

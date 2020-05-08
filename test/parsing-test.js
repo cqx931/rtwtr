@@ -7,7 +7,61 @@ const UNIT_PAIRS = ["<ub>","</ub>"];// Done
 
 const DEFAULT_PATH = ".tb:last";
 
+// Typography
+const TEXT_SIZE = 22, LINE_HEIGHT = 30;
+// Layout
+const CONTENT_WIDTH = 800, MARGIN_LEFT = 200;
+
 // Tools
+
+const Tester = {
+  dom: document.getElementById("getTextWidth"),
+  end:"."
+};
+
+function calculateTextLength(text) {
+  Tester.dom.innerText = text + Tester.end;
+  return Tester.dom.clientWidth - Tester.trim;
+}
+
+function getChildrenBefore(children, key) {
+  if (typeof key == "number") {
+    return children.slice(0, key);
+  } else if (typeof key == "string") {
+    for (var i = 0; i < children.length; i++) {
+      if (key[0] == "#" && children[i].id == key.replace("#","")) {
+        return children.slice(0, i);
+      }
+    }
+  }
+}
+
+function getChildrenAfter(children, key) {
+  if (typeof key == "number") {
+    return children.slice(key+1, children.length);
+  } else if (typeof key == "string") {
+    for (var i = 0; i < children.length; i++) {
+      if (key[0] == "#" && children[i].id == key.replace("#","")) {
+        return children.slice(i+1, children.length);
+      }
+    }
+  }
+}
+
+function endsWithAny(str, array){
+  for (let i = 0; i < array.length; i++) {
+    const word = array[i];
+    if (str.endsWith(word)) return true;
+  }
+  return false;
+}
+
+function wordCount(str) {
+  return str.trim().split(/\s+/).length;
+}
+
+// End of Tools
+
 function readTextFile(file, callback)
 {
     var rawFile = new XMLHttpRequest();
@@ -26,13 +80,7 @@ function readTextFile(file, callback)
     rawFile.send(null);
 }
 
-function endsWithAny(str, array){
-  for (let i = 0; i < array.length; i++) {
-    const word = array[i];
-    if (str.endsWith(word)) return true;
-  }
-  return false;
-}
+
 // Parsing Section
 function removeGitDiffSyntags(content) {
   return content.replace(/(^-|^\+|_)/g,"");
@@ -49,7 +97,7 @@ function removeEmptyElements(selector) {
   });
 }
 
-function getCurrentIndexInDerectParent(dom) {
+function getCurrentIndexInDirectParent(dom) {
   const children = dom.parent().children();
   for (var i = 0; i < children.length; i++) {
     if (children[i] == dom[0]) return i;
@@ -57,8 +105,20 @@ function getCurrentIndexInDerectParent(dom) {
   return false;
 }
 
-function parseText(data) {
+function linguisticParsing(content){
+  // might not need this
+  const elements = content.split(/\s+/);
+  let parsedContent = "";
+  for (var i = 0; i < elements.length; i++) {
+    // if (elements[i] = ) {
+      parsedContent += "<span class='min'>" + elements[i] + "</span>"
+    // }
+  }
+  //console.log(parsedContent);
+  return content;
+}
 
+function parseText(data) {
   const lines = data.split("\n");
   // skip the top section
   lines.splice(0, 5);
@@ -73,14 +133,17 @@ function parseText(data) {
 
     const line = lines[i].substr(1),
           type = lines[i][0];
-    let content = line,
+    let content = lines[i],
         newSpan =  document.createElement("span");
 
     // clean up syntags
-    // content = content.replace(/_(,|;|:|.|\?|!)_/g,"$1 ");
+
     content = removeGitDiffSyntags(content);
     content = removeBreaks(content);
-
+    // fix space after & before punctuatiion
+    content = content.replace(/([,;:.\?!])$/g,"$1 ");
+    content = content.replace(/^ ([,;:.\?!])/g,"$1");
+    // content =
     newSpan.innerText = content;
 
     const currentAdiv = $(contentToBeAppend).find('#page' + currentPage +' .adiv'),
@@ -120,10 +183,14 @@ function parseText(data) {
           } else {
             // shared  = append to both a span & b span
             newSpan.classList += " shared";
+            newSpan.id = "a" + currentNo;
             if (content != "") {
               currentAdiv.find(DEFAULT_PATH).append(newSpan);
-              currentBdiv.find(DEFAULT_PATH).append(newSpan.cloneNode(true));
+              const clone = newSpan.cloneNode(true);
+              clone.id = "b" + currentNo;
+              currentBdiv.find(DEFAULT_PATH).append(clone);
             }
+            currentNo ++;
           }
         break;
       case "+":
@@ -150,25 +217,34 @@ function parseText(data) {
     }
 
   } // End of for loop
+
   // append content
   $('body').append(contentToBeAppend);
+  initTester();
   removeEmptyElements('.tb')
   // set current page
   $('#page1').addClass('current')
 
+  // user interaction
   $('.adiv > p > span').mouseover(function() {
-    const spanIdx = getCurrentIndexInDerectParent($(this));
-    const pIdx = getCurrentIndexInDerectParent($(this).parent());
+    const spanIdx = getCurrentIndexInDirectParent($(this));
+    const pIdx = getCurrentIndexInDirectParent($(this).parent());
     const currentPage = $(this).parent().parent().parent();
 
     const bspan = currentPage.find('.bdiv').children().eq(pIdx).children().eq(spanIdx);
-    $('.bdiv p > span').hide();
-    bspan.show();
+    $('.bdiv p > span').css("opacity","0");
+    anime(bspan, $(this));
+
+  //  bspan.css("opacity","0.8");
+
   })
 
   $('.adiv > p > span').mouseout(function() {
-    $('.bdiv p > span').hide();
+    $('.bdiv p > span').css("opacity","0");
   })
+
+
+  // menu
   $('.menu li').click(function() {
     console.log(this.innerText)
     $('.page').removeClass('current')
@@ -187,15 +263,191 @@ function createNewPage(index, wrapper) {
   $('.menu ul').append("<li>"+ index + "</li>");
 }
 
-function getClosestSharedSpan() {
-  // TODO
-  // return closest;
+
+function basicAnalyze(aspan, bspan, mousePosition) {
+  const dbug = 0;
+  // if no mouse position is provided, default reference point is the center
+  const ref = {
+    x:mousePosition ? mousePosition.x : aspan.width()/2,
+    y:mousePosition ? mousePosition.y : aspan.height()/2 + aspan[0].offsetTop - TEXT_SIZE
+  }
+  dbug && console.log("Reference point:", ref);
+  let report = new contextReport(aspan, bspan, ref);
+  console.log(report);
+
+  // const a_space = calculateLengthBeforeAfter(aspan, tmpIdx),
+  //       b_space = calculateLengthBeforeAfter(bspan, tmpIdx);
+  //
+  // const d = {
+  //   before: a_space.before - b_space.before,
+  //   after: a_space.after - b_space.after
+  // }
+  //
+  // dbug && console.log(a_space, b_space);
+  //
+  // // adjust anchor if space is not enough
+  // if (d.before < 0 && d.after > 0) {
+  //   dbug && console.log("adjust +")
+  //   which ++
+  // } else if(d.after < 0 && d.before > 0) {
+  //   dbug && console.log("adjust -", d.after)
+  //   which --;
+  // }
+  //
+  // return sharedSpans[which].id;
 }
 
-function repositionB(element, anchor) {
-  // TODO
-  // KEY: get offsetLeft
-  // Element defines which level we are working with: it can be <cb> or <ub>
+// function getAnchorIndex(aspan, bspan) {
+//   const sharedInB = bspan.find('.shared'),
+//         sharedInA = aspan.find('.shared');
+//   if (sharedInB.length == sharedInA.length) {
+//     return parseInt(getAnchorId(aspan,bspan).replace(/[a-zA-Z ]/g,""));
+//     // closest
+//   } else {
+//     console.log("Error: The number of shared span doesn't match", sharedInA.length, sharedInB.length)
+//   }
+//
+// }
+
+function calculateTotalTextLength(spans) {
+  let total = 0;
+
+  for (var i = 0; i < spans.length; i++) {
+    if (spans[i].innerText == undefined) {
+      console.log("Error! Can't retrieve innerText.")
+    } else {
+      total += calculateTextLength(spans[i].innerText);
+    }
+  }
+  //console.log(total);
+  return total;
+}
+
+function getAllContent(spans) {
+  let all = "";
+
+  for (var i = 0; i < spans.length; i++) {
+    if (spans[i].innerText == undefined) {
+      console.log("Error! Can't retrieve innerText.")
+    } else {
+      all += spans[i].innerText;
+    }
+  }
+  return all;
+}
+
+function initTester(){
+  Tester.dom.innerText = Tester.end;
+  Tester.trim = Tester.dom.clientWidth;
+}
+
+function anime(bspan, aspan) {
+
+  let context = basicAnalyze(aspan, bspan);
+
+  // const anchor = aspan.find("#a" + anchorIdx);
+  // anchor.addClass("anchor");
+  //
+  // //$('#anchor').offset(anchor.offset());
+  // $('#anchor').text(anchor.text());
+  //
+  // console.log(anchor.offset(), anchor.text(), anchorIdx);
+  //
+  // const childrenAfter = getChildrenAfter(bspan.find('span:not(.tb)'), "#b" + anchorIdx);
+  // const childrenBefore = getChildrenBefore(bspan.find('span:not(.tb)'), "#b" + anchorIdx);
+  //
+  // let contentAfter = "", contentBefore = "";
+  //
+  // for (var i = 0; i < childrenBefore.length; i++) {
+  //   contentBefore += childrenBefore[i].innerText
+  // }
+  // for (var i = 0; i < childrenAfter.length; i++) {
+  //   contentAfter += childrenAfter[i].innerText
+  // }
+  //
+  // let afterOffset = {
+  //    top: anchor.offset().top,
+  //    // left: anchor.offset().left + anchor.width()
+  //  }
+  // console.log(contentBefore, calculateTextLength(contentBefore))
+  // // calculate indent based a new b_difference
+  // const indent = getIndent(calculateTextLength(contentBefore), CONTENT_WIDTH);
+  //
+  // $('#beforeAnchor').text(contentBefore);
+  //
+  // document.getElementById("hover").style.textIndent = indent+ "px";
+  //$('#beforeAnchor').offset(aspan.offset());
+  // $('#afterAnchor').text(contentAfter);
+  // $('#afterAnchor').offset(afterOffset);
+
+  //repositionBspan(bspan, aspan, anchorIdx);
+}
+
+function getIndent(total, unit) {
+  while (total > unit) {
+    total -= unit;
+  }
+  return total;
+}
+
+function repositionBspan(bspan, aspan, idx) {
+
+  const b_anchor = bspan.find("#b"+idx),
+  a_anchor = aspan.find("#a"+idx);
+  b_anchor.addClass("anchor");
+
+  b_anchor.offset(a_anchor.offset());
+  const childrenAfter = getChildrenAfter(bspan.find('span:not(.tb)'), "#b"+idx);
+  const childrenBefore = getChildrenBefore(bspan.find('span:not(.tb)'), "#b"+idx);
+
+  let contentAfter = "", contentBefore = "";
+  for (var i = 0; i < childrenAfter.length; i++) {
+    contentAfter += childrenAfter[i].innerText
+  }
+  for (var i = 0; i < childrenBefore.length; i++) {
+    contentBefore += childrenBefore[i].innerText
+  }
+  console.log(contentBefore, contentAfter)
+
+  let afterOffset = {
+     top: b_anchor.offset().top,
+     left: b_anchor.offset().left + b_anchor.width()
+   }
+
+  $('#afterAnchor').text(contentAfter);
+  $('#afterAnchor').offset(afterOffset);
+  $('#beforeAnchor').text(intend_before + contentBefore);
+  $('#beforeAnchor').offset(aspan.offset());
+
+
+  // reposition everything after anchor
+  // for (var i = 0; i < childrenAfter.length; i++) {
+  //   const c = childrenAfter[i], w = calculateTextLength(c);;
+  //
+  //   let newOffset = {
+  //     top: b_anchor.offset().top,
+  //     left: b_anchor.offset().left + record
+  //   }
+  //
+  //   console.log(newOffset, b_anchor.offset(), c.innerText, newOffset.left);
+  //   if (newOffset.left + w > CONTENT_WIDTH + MARGIN_LEFT) {
+  //     // line break
+  //     const numberOfWords = wordCount(c.innerText);
+  //     if (numberOfWords == 1) {
+  //       newOffset.left -= CONTENT_WIDTH ;
+  //       newOffset.top += LINE_HEIGHT;
+  //     } else {
+  //       // c.innerText = c.innerText.split(" ")[0] + "\n";
+  //       // TODO: try line break within the span;
+  //     }
+  //
+  //   }
+  //   $(c).offset(newOffset);
+  //   record += w
+  //
+  //   if(i== 5) break;
+  // }
+
 }
 
 // End of Visualization Section

@@ -1,5 +1,14 @@
 body {
   background-color: white;
+  font: 20px/30px Georgia, "Times New Roman", Times, serif;
+  cursor: default;
+}
+#getTextWidth {
+   position: absolute;
+   visibility: hidden;
+   height: auto;
+   width: auto;
+   white-space: nowrap; /* Thanks to Herb Caudill comment */
 }
 /* Menu Style */
 .menu ul{
@@ -12,7 +21,7 @@ body {
 .menu ul li:hover{
   color:red;
 }
-#content {
+#content, #hover{
   width: 800px;
   margin:40px 10vw;
 }
@@ -28,13 +37,20 @@ body {
 }
 
 .unit{
-  background-color: #DDD;
+  /* background-color: #DDD; */
+}
+span.anchor {
+  color:green !important;
 }
 
 .adiv p > span:hover{
   opacity:0.2;
   transition:opacity, 1s;
 }
+.adiv p > span:hover .shared{
+  color:orange;
+}
+
 div {
   position: absolute;
 	margin-left: 200px;
@@ -42,23 +58,32 @@ div {
 	margin-top: 100px;
 }
 
-.adiv {
+.adiv, .bdiv{
   top: 0;
   right: 0;
-  z-index: 2;
 }
 
+.adiv{
+  z-index: 2;
+}
+.bdiv {
+  z-index:1;
+}
+.bdiv span {
+  display:
+}
+.bdiv p > span {
+  opacity: 0;
+}
+.adiv p > span {
+  opacity: 1;
+}
+/*
 .bdiv p > span{
   display: none;
   position:fixed;
   right:0;
-  width:300px;
   margin-top: 0;
   z-index: 1;
-}
-
-
-span {
-  font: 20px/30px Georgia, "Times New Roman", Times, serif;
-  cursor: default;
-}
+  width:800px;
+} */
